@@ -1,2 +1,14 @@
-package com.mdice.apitaskmanager.service.dto;public class TaskInDTO {
+package com.mdice.apitaskmanager.service.dto;
+
+
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+public class TaskInDTO {
+
+    private String title;
+    private String description;
+    private LocalDateTime estimatedDate;
 }
