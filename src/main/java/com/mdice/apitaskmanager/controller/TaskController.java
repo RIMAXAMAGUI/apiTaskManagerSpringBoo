@@ -53,7 +53,7 @@ public class TaskController {
 
     @PostMapping ( "updateTask/{id}")
     public ResponseEntity<Void> update(@PathVariable("id") Long id,@RequestBody TaskInDTO taskInDTO){
-        this.taskService.updateTask(id, taskInDTO);
+        this.taskService.updateTask(id, taskInDTO.getTitle(), taskInDTO.getDescription());
         return ResponseEntity.noContent().build();
     }
 
