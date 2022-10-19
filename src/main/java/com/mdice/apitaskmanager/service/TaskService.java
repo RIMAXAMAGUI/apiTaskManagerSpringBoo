@@ -60,18 +60,30 @@ public class TaskService {
         this.repository.deleteById(id);
     }
     @Transactional
-    public Task updateTask(Long id, TaskInDTO taskInDTO){
+    public void updateTask(Long id, String title, String description){
+        //implementamos la excepción to do excepcion
+        Optional<Task> optionalTask = this.repository.findById(id);
+        if (optionalTask.isEmpty()) {
+            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+        }
+        this.repository.updateTask(id, title, description);
+    }
 
-
+    @Transactional
+    public Task updateTaskTwo(Long id, TaskInDTO taskInDTO){
         Optional<Task> optionalTask = this.repository.findById(id);
 
         if (optionalTask.isEmpty()) {
             throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
         }
-        Task task  = mapper.map(taskInDTO);
-        repository.save(task);
-        Task updateTask = repository.findById(id).get();
 
+       Task task = optionalTask.get();
+
+        task.setTitle(taskInDTO.getTitle());
+        task.setDescription(taskInDTO.getDescription());
+        repository.save(task);
+
+        return task;
     }
 
 }
