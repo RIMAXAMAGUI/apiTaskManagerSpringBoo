@@ -45,7 +45,7 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
     //Servicio para eliminar tarea
-    @DeleteMapping("{id}")
+    @DeleteMapping("deleteTask/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id){
         this.taskService.deleteTaskById(id);
         return ResponseEntity.noContent().build();
