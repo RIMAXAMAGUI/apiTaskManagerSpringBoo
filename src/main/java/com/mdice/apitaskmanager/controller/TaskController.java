@@ -39,7 +39,7 @@ public class TaskController {
         return this.taskService.findAllByTaskStatus(status);
     }
 
-    @GetMapping("/getbyid/{}id")
+    @GetMapping("/getbyid/{id}")
     public Optional<Task> getById(@PathVariable("id") long id){
         return this.taskService.getById(id);
     }
