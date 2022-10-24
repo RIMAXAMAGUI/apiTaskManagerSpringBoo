@@ -26,6 +26,7 @@ public interface TaskRepository extends JpaRepository <Task, Long> {
     @Query(value = "UPDATE task SET Task.title = :title, Task.description = :description  WHERE id=:id", nativeQuery = true)
     public void updateTask(@Param("id") Long id, @Param("title") String title, @Param("description") String description);
 
+
 }   //Metodo para actualizar datos de una tarea
 
 

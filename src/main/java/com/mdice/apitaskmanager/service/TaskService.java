@@ -71,8 +71,8 @@ public class TaskService {
 
     @Transactional
     public Task updateTaskTwo(Long id, TaskInDTO taskInDTO){
-        Optional<Task> optionalTask = this.repository.findById(id);
 
+        Optional<Task> optionalTask = this.repository.findById(id);
         if (optionalTask.isEmpty()) {
             throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
         }
@@ -82,9 +82,8 @@ public class TaskService {
         task.setTitle(taskInDTO.getTitle());
         task.setDescription(taskInDTO.getDescription());
         repository.save(task);
-
         return task;
     }
 
-}
+
 
