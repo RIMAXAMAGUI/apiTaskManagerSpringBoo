@@ -26,22 +26,27 @@ public class TaskService {
     }
 
     //logica para obtener una tarea (requiere crear un metodo dentro del repositorio)
-    public Task createTask(TaskInDTO taskInDTO){
-        Task task  = mapper.map(taskInDTO);
+    public Task createTask(TaskInDTO taskInDTO) {
+        Task task = mapper.map(taskInDTO);
         return this.repository.save(task);
     }
 
     //logica para obtener todas las tareas, además este metodo no es necesario crearlo en el repositorio porque esta por defecto dentro del jpa
-    public List<Task> findAll(){
+    public List<Task> findAll() {
         return this.repository.findAll();
     }
 
+    public Optional<Task> getById(long id) {
+        return this.repository.findById(id);
+    }
+
     //logica para obtener tareas por un estado de tarea determinado (requiere crear el metodo dentro del repositorio)
-    public List<Task> findAllByTaskStatus(TaskStatus status){
+    public List<Task> findAllByTaskStatus(TaskStatus status) {
         return this.repository.findAllByTaskStatus(status);
     }
+
     @Transactional
-    public void updateTaskAsCompleted(Long id){
+    public void updateTaskAsCompleted(Long id) {
         //implementamos la excepción to do excepcion
         Optional<Task> optionalTask = this.repository.findById(id);
         if (optionalTask.isEmpty()) {
@@ -51,7 +56,7 @@ public class TaskService {
     }
 
     //Eliminar una tarea
-    public void deleteTaskById(Long id){
+    public void deleteTaskById(Long id) {
         //implementamos la excepción to do excepcion
         Optional<Task> optionalTask = this.repository.findById(id);
         if (optionalTask.isEmpty()) {
@@ -59,8 +64,9 @@ public class TaskService {
         }
         this.repository.deleteById(id);
     }
+
     @Transactional
-    public void updateTask(Long id, String title, String description){
+    public void updateTask(Long id, String title, String description) {
         //implementamos la excepción to do excepcion
         Optional<Task> optionalTask = this.repository.findById(id);
         if (optionalTask.isEmpty()) {
@@ -70,20 +76,20 @@ public class TaskService {
     }
 
     @Transactional
-    public Task updateTaskTwo(Long id, TaskInDTO taskInDTO){
+    public Task updateTaskTwo(Long id, TaskInDTO taskInDTO) {
 
         Optional<Task> optionalTask = this.repository.findById(id);
         if (optionalTask.isEmpty()) {
             throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
         }
 
-       Task task = optionalTask.get();
+        Task task = optionalTask.get();
 
         task.setTitle(taskInDTO.getTitle());
         task.setDescription(taskInDTO.getDescription());
         repository.save(task);
         return task;
     }
-
+}
 
 
