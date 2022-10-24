@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.http.HttpResponse;
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
@@ -45,7 +46,7 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
     //Servicio para eliminar tarea
-    @DeleteMapping("{id}")
+    @DeleteMapping("deleteTask/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id){
         this.taskService.deleteTaskById(id);
         return ResponseEntity.noContent().build();
@@ -57,4 +58,9 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping ( "updateTaskTwo/{id}")
+    public ResponseEntity<Void> updateTwo(@PathVariable("id") Long id,@RequestBody TaskInDTO taskInDTO){
+        this.taskService.updateTaskTwo(id, taskInDTO);
+        return ResponseEntity.noContent().build();
+    }
 }

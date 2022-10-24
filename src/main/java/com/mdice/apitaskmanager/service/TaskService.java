@@ -69,6 +69,20 @@ public class TaskService {
         this.repository.updateTask(id, title, description);
     }
 
+    @Transactional
+    public Task updateTaskTwo(Long id, TaskInDTO taskInDTO){
+
+        Optional<Task> optionalTask = this.repository.findById(id);
+        if (optionalTask.isEmpty()) {
+            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+        }
+
+       Task task = optionalTask.get();
+
+        task.setTitle(taskInDTO.getTitle());
+        task.setDescription(taskInDTO.getDescription());
+        repository.save(task);
+        return task;
     }
 
 

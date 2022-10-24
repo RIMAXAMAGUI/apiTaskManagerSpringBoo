@@ -18,7 +18,7 @@ public class Task {
     private LocalDateTime createDate;
     private LocalDateTime estimatedDate;
     private LocalDateTime finalizationDate;
-    private boolean complete;
+    private boolean completed;
     private TaskStatus taskStatus;
 
 }
