@@ -16,4 +16,4 @@ La funcionalidad que necesitamos son:
 4- Marcar tarea como cumplida (actualizar tarea)
 5- Eliminar tarea
 
-Usaremos Spring boot, H2 & Swagger para crear esta aplicación.
+Usaremos Spring boot, H2 & Swagger para crear esta aplicación. xd
