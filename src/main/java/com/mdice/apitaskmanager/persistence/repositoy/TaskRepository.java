@@ -30,6 +30,7 @@ public interface TaskRepository extends JpaRepository <Task, Long> {
     @Query(value = "UPDATE task SET Task.completed = FALSE , task.finalization_Date = NULL  WHERE id=:id", nativeQuery = true)
     public void markTaskAsUnCompleted(@Param("id") Long id);
 
+
 }   //Metodo para actualizar datos de una tarea
 
 
