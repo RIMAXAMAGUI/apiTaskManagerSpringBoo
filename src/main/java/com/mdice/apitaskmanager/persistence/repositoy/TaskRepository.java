@@ -27,7 +27,7 @@ public interface TaskRepository extends JpaRepository <Task, Long> {
     public void updateTask(@Param("id") Long id, @Param("title") String title, @Param("description") String description);
 
     @Modifying //query de actualización y marcar en el servicio que es transaccional
-    @Query(value = "UPDATE task SET Task.completed = FALSE , task.finalization_Date = CURRENT_TIMESTAMP  WHERE id=:id", nativeQuery = true)
+    @Query(value = "UPDATE task SET Task.completed = FALSE , task.finalization_Date = NULL  WHERE id=:id", nativeQuery = true)
     public void markTaskAsUnCompleted(@Param("id") Long id);
 
 }   //Metodo para actualizar datos de una tarea
