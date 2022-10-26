@@ -40,7 +40,7 @@ public class TaskController {
     }
 
     @GetMapping("/getbyid/{id}")
-    public Optional<Task> getById(@PathVariable("id") long id){
+    public Task getById(@PathVariable("id") long id){
         return this.taskService.getById(id);
     }
     //Actualizaremos una sola tarea y utilizaremos una anotacion pathmapping

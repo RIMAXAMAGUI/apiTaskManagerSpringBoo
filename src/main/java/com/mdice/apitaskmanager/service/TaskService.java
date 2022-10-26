@@ -36,8 +36,14 @@ public class TaskService {
         return this.repository.findAll();
     }
 
-    public Optional<Task> getById(long id) {
-        return this.repository.findById(id);
+    public Task getById(long id) {
+        Optional<Task> optionalTask = this.repository.findById(id);
+
+        if (optionalTask.isEmpty()) {
+            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+        }
+
+        return optionalTask.get();
     }
 
     //logica para obtener tareas por un estado de tarea determinado (requiere crear el metodo dentro del repositorio)
