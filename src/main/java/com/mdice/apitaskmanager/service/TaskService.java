@@ -49,6 +49,14 @@ public class TaskService {
         }
         this.repository.markTaskAsCompleted(id);
     }
+    public void updateTaskAsUnCompleted(Long id){
+        //implementamos la excepción to do excepcion
+        Optional<Task> optionalTask = this.repository.findById(id);
+        if (optionalTask.isEmpty()) {
+            throw new ToDoExceptions("id not found", HttpStatus.NOT_FOUND);
+        }
+        this.repository.markTaskAsUnCompleted(id);
+    }
 
     //Eliminar una tarea
     public void deleteTaskById(Long id){

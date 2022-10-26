@@ -45,6 +45,11 @@ public class TaskController {
         this.taskService.updateTaskAsCompleted(id);
         return ResponseEntity.noContent().build();
     }
+    @PatchMapping("mark-as-uncompleted/{id}")
+    public ResponseEntity<Void> markTaskAsUnCompleted(@PathVariable("id") Long id){
+        this.taskService.updateTaskAsUnCompleted(id);
+        return ResponseEntity.noContent().build();
+    }
     //Servicio para eliminar tarea
     @DeleteMapping("deleteTask/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id){
