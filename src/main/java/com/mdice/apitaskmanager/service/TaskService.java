@@ -49,6 +49,7 @@ public class TaskService {
         }
         this.repository.markTaskAsCompleted(id);
     }
+    @Transactional
     public void updateTaskAsUnCompleted(Long id){
         //implementamos la excepción to do excepcion
         Optional<Task> optionalTask = this.repository.findById(id);
