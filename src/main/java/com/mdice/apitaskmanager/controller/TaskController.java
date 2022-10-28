@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -38,6 +39,10 @@ public class TaskController {
         return this.taskService.findAllByTaskStatus(status);
     }
 
+    @GetMapping("/getbyid/{id}")
+    public Task getById(@PathVariable("id") long id){
+        return this.taskService.getById(id);
+    }
     //Actualizaremos una sola tarea y utilizaremos una anotacion pathmapping
 
     @PatchMapping("mark-as-completed/{id}")
