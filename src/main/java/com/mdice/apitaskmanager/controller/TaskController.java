@@ -5,6 +5,7 @@ import com.mdice.apitaskmanager.persistence.entity.Task;
 import com.mdice.apitaskmanager.persistence.entity.TaskStatus;
 import com.mdice.apitaskmanager.service.TaskService;
 import com.mdice.apitaskmanager.service.dto.TaskInDTO;
+import com.mdice.apitaskmanager.validator.WebTaskValidator;
 import org.springframework.http.HttpRange;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,8 @@ public class TaskController {
     //Inserta toda las tareas
     @PostMapping
     public Task createTask(@RequestBody TaskInDTO taskInDTO ){
+        WebTaskValidator validate = new WebTaskValidator();
+        validate.validate(taskInDTO);
         return this.taskService.createTask(taskInDTO);
     }
 

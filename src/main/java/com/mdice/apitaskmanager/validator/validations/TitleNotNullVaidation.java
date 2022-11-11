@@ -11,8 +11,6 @@ public class TitleNotNullVaidation extends ChainValidator {
         if (taskInDTO.getTitle().length() == 0  || taskInDTO.getTitle() == null ){
             throw  new ToDoExceptions("Por favor  ingrese un titulo", HttpStatus.BAD_REQUEST);
         }
-
         this.next.validate(taskInDTO);
     }
-
 }
