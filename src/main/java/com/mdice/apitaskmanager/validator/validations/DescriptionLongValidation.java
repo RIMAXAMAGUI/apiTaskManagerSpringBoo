@@ -12,6 +12,6 @@ public class DescriptionLongValidation extends ChainValidator {
         if(taskInDTO.getDescription().length() >100){
             throw new ToDoExceptions("la descripcion es demasiado larga ", HttpStatus.BAD_REQUEST);
         }
-        this.next.validate(taskInDTO);
+
     }
 }
